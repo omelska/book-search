@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/books-app");
 
 // Start the API server
 app.listen(PORT, function() {
-  console.log(`🌎 Server now listening on PORT http://localhost/${PORT} !`);
+  console.log(`🌎 Server now listening on PORT http://localhost:${PORT} !`);
   console.log("API ", process.env.GOOGLE_BOOKS_API_KEY);
   console.log("MONGO-DB ", process.env.MONGODB_URL);
 });
