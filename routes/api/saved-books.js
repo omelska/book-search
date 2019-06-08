@@ -7,6 +7,6 @@ router
   .get(savedBooksController.findAll)
   .post(savedBooksController.create);
 
-router.route("/delete/:id").get(savedBooksController.remove);
+router.route("/delete/:id").delete(savedBooksController.remove);
 
 module.exports = router;

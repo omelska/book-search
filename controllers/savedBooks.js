@@ -1,21 +1,15 @@
-const db = require("../models/savedBooks.js");
+const db = require("../models/index.js");
 
 module.exports = {
   findAll: (req, res) => {
     db.Book.find({})
-      .sort(1)
-      .then(results => {
-        res.json(results);
-        console.log("Connected inside findAll\n", db.Book);
-      })
+      .sort({ title: 1 })
+      .then(results => res.json(results))
       .catch(err => res.status(422).json(err));
   },
   create: (req, res) => {
     db.Book.create(req.body)
-      .then(results => {
-        res.json(results);
-        console.log("inside create \n", db.Book);
-      })
+      .then(results => res.json(results))
       .catch(err => res.status(422).json(err));
   },
   remove: (req, res) => {
