@@ -7,18 +7,15 @@ router.use((req, res, next) => {
 });
 
 router.get("/:title", (req, res) => {
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${
+  const url3 = `https://www.googleapis.com/books/v1/volumes?q=${
     req.params.title
-  }=epub&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
-  const url2 = `https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&download=epub&key=${
-    process.env.GOOGLE_BOOKS_API_KEY
   }`;
-  console.log("api key ", process.env.GOOGLE_BOOKS_API_KEY);
 
   axios
-    .get(url2)
+    .get(url3)
     .then(results => {
-      console.log("RESULTS\n", results);
+      console.log("RESULTS\n", results.data.items);
+      res.json(results.data.items);
     })
     .catch(err => {
       console.log(err);
