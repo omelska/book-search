@@ -1,0 +1,23 @@
+.margin-right{
+    margin-right: 30px; 
+}
+
+nav{
+    height: 60px;
+}
+.navbar{
+    background: #f3bd42;
+}
+
+.logo{
+    height: 50px;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+a:hover{
+    text-decoration: none;
+    color:#cbdcfc;
+}
