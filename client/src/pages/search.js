@@ -1,9 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import Header from "../components/header";
 
 const Search = ()=>{
     return(
-        <div>Search</div>
+        <div>
+            <Header />
+       
+            Search</div>
     )
 }
 

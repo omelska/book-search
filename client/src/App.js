@@ -1,15 +1,14 @@
 import React from 'react';
-import SaveBtn from "./components/saveBtn";
-import DeleteBtn from "./components/deleteBtn";
 import Search from  "./pages/search";
 import Saved from "./pages/saved";
 import Navbar from "./components/nav";
-import Img from "./components/img";
+import Footer from "./components/footer"
 import  {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 
 function App() {
   return (
+<div>
 
     <Router>
       <div>
@@ -20,12 +19,11 @@ function App() {
           <Route exact path="/saved" component={Saved} />
           </Switch>
       </div>
+      
     </Router>
-  //  <div>
-  //    <SaveBtn/>
-  //    <Img url="../public/icon.png" alt="some img"/>
-  //    <DeleteBtn />
-  //  </div>
+    <Footer />
+   </div>
+
   )
 }
 

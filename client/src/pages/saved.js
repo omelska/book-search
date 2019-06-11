@@ -1,9 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import Header from "../components/header";
 
 const Saved = ()=>{
     return(
-        <div>Saved</div>
+        <div>
+       <Header />
+            Saved
+        </div>
     )
 }
 

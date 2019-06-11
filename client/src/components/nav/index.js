@@ -12,7 +12,7 @@ return(
         <span className="navbar-toggler-icon"></span>
     </button>
     <Link to="/">
-    <img src="../../../public/images/brand-logo.png" alt="logo-icon" className="logo margin-right"/>
+    <img src="https://github.com/OlyaMelska/book-search/blob/master/client/public/images/brand-logo.png?raw=true" alt="logo-icon" className="logo margin-right"/>
         {/* <img src="../../../../client/public/icon.png" alt="icon-logo"> */}
     </Link>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
