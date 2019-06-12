@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css"
+import google from "../../assets/images/google.png"
 
 const Header =(props)=>{
         return(
             <header>
                 <h1>React <span>
-                    <img src="../../../public/images/google.png" alt="google" id="google"></img>
+                    <img src={google} alt="google" id="google"></img>
                     </span> Book Search</h1>
                 <div>
                     {props.children}

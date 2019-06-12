@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "./style.css";
+import icon from "../../assets/images/brand-logo.png";
 
 const Navbar = (props)=>{
 return(
@@ -12,8 +13,8 @@ return(
         <span className="navbar-toggler-icon"></span>
     </button>
     <Link to="/">
-    <img src="https://github.com/OlyaMelska/book-search/blob/master/client/public/images/brand-logo.png?raw=true" alt="logo-icon" className="logo margin-right"/>
-        {/* <img src="../../../../client/public/icon.png" alt="icon-logo"> */}
+    <img src={icon} alt="logo-icon" className="logo margin-right"/>
+        
     </Link>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
