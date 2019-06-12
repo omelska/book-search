@@ -1,8 +1,11 @@
+
 .row{
     height: 30vh;
 
 }
-
+.center{
+    text-align: center;
+}
 
 .btn{
     color: #fff;

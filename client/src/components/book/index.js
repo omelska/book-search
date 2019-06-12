@@ -1,6 +1,7 @@
 import React from "react";
 import Img from "../img";
 import DeleteBtn from "../deleteBtn";
+import SaveBtn from "../saveBtn"
 import "./style.css"
 
 const Book = (props)=>{
@@ -9,7 +10,7 @@ const Book = (props)=>{
         <h2>{props.title}</h2>
         <div className="row">
             
-            <div className="col-lg-3 align-self-center">
+            <div className="col-lg-3 align-self-center center">
                 <Img  url={props.url} alt={props.alt} />
             </div>
             <div className="col-lg-6">
@@ -21,7 +22,7 @@ const Book = (props)=>{
                        <a href={props.link}><button className="btn btn-warning ">VIEW</button></a>  
                      </div>
                      <div>
-                         <DeleteBtn />
+                         <SaveBtn />
                      </div>
                      
                  </div>

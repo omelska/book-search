@@ -1,13 +1,12 @@
 footer{
-    height: 50px;
+    height: 60px;
     background: #ffc107;
     text-align: center;
     display: flex;
     align-content: space-around;
+    color: #fff;
 }
 
 p{
     margin: auto;
-    color: #fff;
-  
 }
