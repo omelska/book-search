@@ -1,22 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext, useCallback} from "react";
 import Header from "../components/header";
 import Main from "../components/main";
 import "./style.css";
 import zoom from "../assets/images/zoom.png";
 import API from "../utils/API";
 import Book from "../components/book";
+import globalContext from "../components/context"
+import GlobalContext from "../components/context";
+import SaveBtn from "../components/saveBtn";
 
 
 const Search = ()=>{
     const [searchedBook, setSearch]  = useState("");
-    const [title, setTitle] = useState(""); 
-    const [img, setImg] = useState("");
-    const [alt, setAlt] = useState("");
-    const [authors, setAuthors] = useState("");
-    const [description, setDescription] = useState("");
-    const [link, setLink] = useState ("");
+    const [books, setBooks] = useState([]);
     const [err, setErr] = useState();
-
+ 
 
     const handleClick = e =>{
         e.preventDefault();
@@ -25,23 +23,15 @@ const Search = ()=>{
     const setData = (data) => {
         console.log("DATA ", data.items)
         data.items.forEach(element=>{
-            setTitle(element.volumeInfo.title);
-            setAuthors(element.volumeInfo.authors);
-            setDescription( element.volumeInfo.description);
-            setImg(element.volumeInfo.imageLinks.smallThumbnail);
-            setAlt(element.volumeInfo.title+"-img");
-            setLink(element.selfLink);
-   
-
-        })
-        console.log("TITLE IS ", title);
-        console.log("DESCRIPTION IS ", description);
-        console.log("AUTHORS ", authors);
-        console.log("IMG ", img);
-        console.log ("ALT ", alt);
-        console.log("LINK ", link);
-       
-        
+            setBooks([...books, {
+                title: element.volumeInfo.title,
+                authors: element.volumeInfo.authors,
+                description: element.volumeInfo.description,
+                img: element.volumeInfo.imageLinks.smallThumbnail,
+                alt: element.volumeInfo.title+"-img",
+                link: element.selfLink
+            }])
+        })     
     }
 
     useEffect( ()=>{
@@ -62,17 +52,19 @@ const Search = ()=>{
 
     return(
         <div>
-            <Header />
-            <form>
-            <input type="text" onChange={event=>{
-                setSearch(event.target.value)    
-            }
-            }/>
-            <img src={zoom} alt="zoom-icon" id="zoom-icon" type="submit" onClick={handleClick}/>
+            <Header/>
+            <form onSubmit={handleClick}>
+            <input type="text" onChange={event=> setSearch(event.target.value)}/>
+            <img src={zoom} alt="zoom-icon" id="zoom-icon" type="submit" onClick={event=>{setSearch(event.target.value)}}/>
             </form>
-            <Main>
-                <Book title={title} url={img} alt={alt} authors={authors} description={description} link={link}/>
-
+            <Main value={GlobalContext}>
+                {books.map(book=>(
+                    <Book title={book.title} url={book.img} alt={book.alt} authors={book.authors} description={book.description} link={book.link}>
+                        <SaveBtn />
+                    </Book>
+                ))}
+                
+        
             </Main>
             
             </div>

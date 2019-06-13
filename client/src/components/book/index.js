@@ -22,7 +22,7 @@ const Book = (props)=>{
                        <a href={props.link}><button className="btn btn-warning ">VIEW</button></a>  
                      </div>
                      <div>
-                         <SaveBtn />
+                         {props.children}
                      </div>
                      
                  </div>
