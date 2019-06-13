@@ -10,7 +10,12 @@ const Saved = () => {
   const [err, setErr] = useState();
 
   const handleClick = e => {
-    e.preventDefault();
+    console.log("CLicked on ", e);
+    console.log(`/api/saved/delete/${e._id}`);
+    axios
+      .delete(`/api/saved/delete/${e._id}`)
+      .then(res => console.log(res))
+      .catch(err => setErr(err));
   };
 
   const setData = data => {
@@ -19,6 +24,7 @@ const Saved = () => {
       setBooks([
         ...books,
         {
+          _id: element._id,
           title: element.title,
           authors: element.authors,
           description: element.description,
@@ -43,7 +49,7 @@ const Saved = () => {
         setData(res.data);
       })
       .catch(err => setErr(err));
-  }, [err]);
+  }, [books.length !== 0]);
 
   return (
     <div>
@@ -51,7 +57,7 @@ const Saved = () => {
       <Main>
         {books.map(book => (
           <Book
-            key={book._id}
+            key={book.title + book._id}
             title={book.title}
             url={book.img}
             alt={book.alt}
@@ -59,7 +65,7 @@ const Saved = () => {
             description={book.description}
             link={book.link}
           >
-            <DeleteBtn />
+            <DeleteBtn onClick={event => handleClick(book)} />
           </Book>
         ))}
       </Main>

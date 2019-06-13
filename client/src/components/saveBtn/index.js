@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-const SaveBtn = (props)=>{
-    const [book, setBook] = useState("");
-
-    return(
-        <button className="btn btn-warning">SAVE</button>
-    )
-}
+const SaveBtn = props => {
+  return (
+    <button className="btn btn-warning" onClick={() => props.onClick(props)}>
+      SAVE
+    </button>
+  );
+};
 
 export default SaveBtn;

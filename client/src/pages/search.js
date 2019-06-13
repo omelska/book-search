@@ -8,14 +8,28 @@ import Book from "../components/book";
 import globalContext from "../components/context";
 import GlobalContext from "../components/context";
 import SaveBtn from "../components/saveBtn";
+import axios from "axios";
 
 const Search = () => {
   const [searchedBook, setSearch] = useState("");
   const [books, setBooks] = useState([]);
+  const [isClicked, setClick] = useState(false);
   const [err, setErr] = useState();
 
   const handleClick = e => {
-    e.preventDefault();
+    console.log("CLICKED");
+    let obj = {
+      title: e.title,
+      authors: e.authors.toString(),
+      description: e.description,
+      image: e.img,
+      link: e.link
+    };
+    console.log("Book that was clicked ", obj);
+    axios
+      .post("/api/saved/books", obj)
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
   };
 
   const setData = data => {
@@ -47,7 +61,9 @@ const Search = () => {
         setData(res.data);
       })
       .catch(err => setErr(err));
-  }, [searchedBook]);
+
+    setClick(false);
+  }, [isClicked, books]);
 
   return (
     <div>
@@ -59,15 +75,13 @@ const Search = () => {
           alt="zoom-icon"
           id="zoom-icon"
           type="submit"
-          onClick={event => {
-            setSearch(event.target.value);
-          }}
+          onClick={() => setClick(true)}
         />
       </form>
       <Main value={GlobalContext}>
         {books.map(book => (
           <Book
-            key={book.title}
+            key={book.link}
             title={book.title}
             url={book.img}
             alt={book.alt}
@@ -75,7 +89,7 @@ const Search = () => {
             description={book.description}
             link={book.link}
           >
-            <SaveBtn />
+            <SaveBtn onClick={event => handleClick(book)} />
           </Book>
         ))}
       </Main>
