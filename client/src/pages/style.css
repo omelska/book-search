@@ -1,15 +1,15 @@
-form{
+.form {
     text-align: center;
     color: #545454;
 }
 
-input{
+input {
     width: 70%;
     height: 28px;
     text-align: left;
 }
 
-#zoom-icon{
+#zoom-icon {
     height: 26px;
     width: auto;
     padding-bottom: 5px;

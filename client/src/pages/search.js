@@ -5,8 +5,6 @@ import "./style.css";
 import zoom from "../assets/images/zoom.png";
 import API from "../utils/API";
 import Book from "../components/book";
-import globalContext from "../components/context";
-import GlobalContext from "../components/context";
 import SaveBtn from "../components/saveBtn";
 import axios from "axios";
 
@@ -34,19 +32,19 @@ const Search = () => {
 
   const setData = data => {
     console.log("DATA ", data.items);
-    data.items.forEach(element => {
-      setBooks([
-        ...books,
-        {
-          title: element.volumeInfo.title,
-          authors: element.volumeInfo.authors,
-          description: element.volumeInfo.description,
-          img: element.volumeInfo.imageLinks.smallThumbnail,
-          alt: element.volumeInfo.title + "-img",
-          link: element.selfLink
-        }
-      ]);
+    console.log("BOOKS", books);
+    const booksArr = data.items.map(element => {
+      return {
+        id: element.id,
+        title: element.volumeInfo.title,
+        authors: element.volumeInfo.authors,
+        description: element.volumeInfo.description,
+        img: element.volumeInfo.imageLinks.smallThumbnail,
+        alt: element.volumeInfo.title + "-img",
+        link: element.selfLink
+      };
     });
+    setBooks(booksArr);
   };
 
   useEffect(() => {
@@ -59,29 +57,39 @@ const Search = () => {
           throw new Error(res.data.message);
         }
         setData(res.data);
+        console.log("BOOKS inside useEffect", books);
       })
       .catch(err => setErr(err));
 
     setClick(false);
-  }, [isClicked, books]);
+  }, [isClicked]);
 
   return (
     <div>
       <Header />
-      <form onSubmit={handleClick}>
-        <input type="text" onChange={event => setSearch(event.target.value)} />
+      <div className="form">
+        <input
+          type="text"
+          onChange={event => setSearch(event.target.value)}
+          onKeyPress={event => {
+            console.log("EVENT ", event.key);
+            if (event.key === "Enter") {
+              setClick(true);
+            }
+            return false;
+          }}
+        />
         <img
           src={zoom}
           alt="zoom-icon"
           id="zoom-icon"
-          type="submit"
           onClick={() => setClick(true)}
         />
-      </form>
-      <Main value={GlobalContext}>
+      </div>
+      <Main>
         {books.map(book => (
           <Book
-            key={book.link}
+            key={book.id + book}
             title={book.title}
             url={book.img}
             alt={book.alt}
@@ -89,7 +97,7 @@ const Search = () => {
             description={book.description}
             link={book.link}
           >
-            <SaveBtn onClick={event => handleClick(book)} />
+            <SaveBtn onClick={() => handleClick(book)} />
           </Book>
         ))}
       </Main>

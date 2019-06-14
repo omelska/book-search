@@ -9,34 +9,7 @@ const Saved = () => {
   const [books, setBooks] = useState([]);
   const [err, setErr] = useState();
 
-  const handleClick = e => {
-    console.log("CLicked on ", e);
-    console.log(`/api/saved/delete/${e._id}`);
-    axios
-      .delete(`/api/saved/delete/${e._id}`)
-      .then(res => console.log(res))
-      .catch(err => setErr(err));
-  };
-
-  const setData = data => {
-    console.log("DATA ", data);
-    data.forEach(element => {
-      setBooks([
-        ...books,
-        {
-          _id: element._id,
-          title: element.title,
-          authors: element.authors,
-          description: element.description,
-          img: element.image,
-          alt: element.title + "-img",
-          link: element.link
-        }
-      ]);
-    });
-  };
-
-  useEffect(() => {
+  const getData = () => {
     axios
       .get("/api/saved/books")
       .then(res => {
@@ -49,7 +22,38 @@ const Saved = () => {
         setData(res.data);
       })
       .catch(err => setErr(err));
-  }, [books.length !== 0]);
+  };
+
+  const handleClick = e => {
+    axios
+      .delete(`/api/saved/delete/${e._id}`)
+      .then(res => {
+        console.log(res);
+        getData();
+      })
+      .catch(err => setErr(err));
+  };
+
+  const setData = data => {
+    console.log("DATA ", data);
+
+    const savedBooksArr = data.map(element => {
+      return {
+        _id: element._id,
+        title: element.title,
+        authors: element.authors,
+        description: element.description,
+        img: element.image,
+        alt: element.title + "-img",
+        link: element.link
+      };
+    });
+    setBooks(savedBooksArr);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [err]);
 
   return (
     <div>
@@ -57,7 +61,7 @@ const Saved = () => {
       <Main>
         {books.map(book => (
           <Book
-            key={book.title + book._id}
+            key={book._id}
             title={book.title}
             url={book.img}
             alt={book.alt}
@@ -65,7 +69,7 @@ const Saved = () => {
             description={book.description}
             link={book.link}
           >
-            <DeleteBtn onClick={event => handleClick(book)} />
+            <DeleteBtn onClick={() => handleClick(book)} />
           </Book>
         ))}
       </Main>
