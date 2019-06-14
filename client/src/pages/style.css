@@ -4,9 +4,10 @@
 }
 
 input {
-    width: 70%;
+    width: 50%;
     height: 28px;
     text-align: left;
+    border: 1px solid #545454;
 }
 
 #zoom-icon {
@@ -15,4 +16,5 @@ input {
     padding-bottom: 5px;
     margin-left: 5px;
     -webkit-appearance: none;
+    cursor: pointer;
 }

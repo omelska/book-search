@@ -1,12 +1,13 @@
-footer{
+footer {
     height: 60px;
-    background: #ffc107;
+    background: url("../../assets/images/background-footer.png");
+    background-size: cover;
     text-align: center;
     display: flex;
     align-content: space-around;
     color: #fff;
 }
 
-p{
+p {
     margin: auto;
 }

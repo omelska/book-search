@@ -1,0 +1,10 @@
+.modal-header {
+    background: #4285f4;
+    border-radius: 5px;
+    border: 0px;
+    color: #fff;
+}
+
+.modal {
+    top: 25%;
+}

@@ -1,34 +1,37 @@
-
-.row{
+.row {
     height: 30vh;
+    margin-bottom: 20px;
 
 }
-.center{
+
+.center {
     text-align: center;
 }
 
-.btn{
+.btn {
     color: #fff;
     margin: 10px;
     width: 100px;
 }
 
-h2{
+h2 {
     color: #4285f4;
 }
-h3{
+
+h3 {
     color: #34a853;
 }
 
-p{
+p {
     color: #545454;
 }
 
-.col-lg-3, .col-lg-6{
+.col-lg-3,
+.col-lg-6 {
 
     max-height: 30vh;
 }
 
-.col-lg-6{
+.col-lg-6 {
     overflow: scroll;
 }

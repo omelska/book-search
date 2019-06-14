@@ -41,7 +41,7 @@ const Search = () => {
         description: element.volumeInfo.description,
         img: element.volumeInfo.imageLinks.smallThumbnail,
         alt: element.volumeInfo.title + "-img",
-        link: element.selfLink
+        link: element.volumeInfo.infoLink
       };
     });
     setBooks(booksArr);

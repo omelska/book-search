@@ -1,12 +1,14 @@
-header{
+header {
     text-align: center;
     padding-top: 10px;
 }
-h1{
+
+h1 {
+    font-size: 54px;
     color: #34a853;
 }
 
-#google{
-    height: 10vh;
+#google {
+    height: 20vh;
     width: auto;
 }

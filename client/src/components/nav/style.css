@@ -1,23 +1,26 @@
-.margin-right{
-    margin-right: 30px; 
+.margin-right {
+    margin-right: 30px;
 }
 
-nav{
+nav {
     height: 60px;
 }
-.navbar{
-    background: #ffc107;
+
+.navbar {
+    background: url("../../assets/images/background.png");
+    background-size: cover;
 }
 
-.logo{
+.logo {
     height: 50px;
 }
 
-a{
+a {
     text-decoration: none;
     color: #fff;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
-    color:#cbdcfc;
+    color: #cbdcfc;
 }
