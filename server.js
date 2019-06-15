@@ -17,11 +17,14 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+mongoose
+  .connect(MONGODB_URI || "error", { useNewUrlParser: true })
+  .then(res => console.log("Success"))
+  .catch(err => console.log(err));
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎 Server now listening on PORT http://localhost:${PORT} !`);
   console.log("API ", process.env.GOOGLE_BOOKS_API_KEY);
-  console.log("MONGO-DB ", process.env.MONGODB_URL);
+  console.log("MONGODB-URI ", process.env.MONGODB_URI);
 });
